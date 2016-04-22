@@ -1,16 +1,55 @@
 angular.module('toDoList.services', [])
 
-.factory('myListStore', function() {
+// The localStorage factory below has been taken from an app my brother created a couple of months ago
+// He added me to the repository on bitbucket however I belive it is private
+// Link - https://bitbucket.org/foodphoto/foodphoto-hybrid
+// I done some reading about it and then implemented the functions in my own factory below - 'myListStore'
+
+.factory('localStorage', function($window) {
+	function get(key, defaultValue) {
+		return $window.localStorage[key] || defaultValue;
+	}
+
+	function set(key, value) {
+		$window.localStorage[key] = value;
+	}
+
+	function getObject(key) {
+		return JSON.parse($window.localStorage[key] || null);
+	}
+
+	function setObject(key, value) {
+		$window.localStorage[key] = JSON.stringify(value);
+	}
+
+	function removeItem(key) {
+		$window.localStorage.removeItem(key);
+	}
+
+	return {
+		get: get,
+		set: set,
+		getObject: getObject,
+		setObject: setObject,
+		removeItem: removeItem
+	};
+})
+
+.factory('myListStore', function(localStorage) {
    
     //Object to store array of items for ToDoList
     var data = {
-        toDoList: [
-//            { title: "TestTitle", info: "Test description"},
+        toDoList: [      
+            //{ title: "TestTitle", info: "Test description"},
         ]
     };
-    
+  
     //Function to get ToDo items from the factory
     function getToDo() {
+        
+        //Attempt to get localStroage data
+        data.toDoList = localStorage.getObject('data') || [];
+        
         return data;
     }
     
@@ -21,12 +60,19 @@ angular.module('toDoList.services', [])
         if(toDoItem.title != "")
         {
             data.toDoList.push({title: toDoItem.title, info: toDoItem.info});
-        }        
+            
+            //Update the localStorage object
+            localStorage.setObject('data', data.toDoList);
+        }
+        
     }
     
-    //Functoin to remove an item from the array in the data object
+    //Function to remove an item from the array in the data object
     function removeToDo(index) {
         data.toDoList.splice(index, 1);
+        
+        //Set the new object in localStorage to the new toDoList (with item spliced from array)
+        localStorage.setObject('data', data.toDoList);
     }
     
     //Factory returns
