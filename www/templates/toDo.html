@@ -31,11 +31,27 @@
         </div>
     
         <!-- Ion List to use ng-repeat on objects in [] -->
-        <ion-list>
-            <ion-item ng-repeat="item in data.toDoList | filter:filterText">
-                <b>{{item.title}}</b> - {{item.info}}
-            </ion-item>    
-        </ion-list>
-    
+        <div class="list list-inset">
+            <ion-list show-delete="shouldShowDelete">
+                <ion-item ng-repeat="item in data.toDoList | filter:filterText">
+                    
+                    <!-- Referenced from ionicframework api's 
+                    http://ionicframework.com/docs/api/directive/ionDeleteButton/-->
+                    <ion-delete-button class="ion-minus-circled" ng-click="removeToDo($index)">
+                    </ion-delete-button>
+                    
+                    <!-- Desiplay items in To Do List -->
+                    <b>{{item.title}}</b> - {{item.info}}
+                    
+                    
+                </ion-item>    
+            </ion-list>
+            
+            <ion-toggle ng-model="shouldShowDelete">
+                Remove Items
+            </ion-toggle>
+            
+        </div>
+        
     </ion-content>
 </ion-view>

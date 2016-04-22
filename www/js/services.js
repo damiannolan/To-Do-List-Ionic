@@ -5,8 +5,7 @@ angular.module('toDoList.services', [])
     //Object to store array of items for ToDoList
     var data = {
         toDoList: [
-            { title: "Title", info: "Item description here"},
-            { title: "Yo", info: "Item information here"}
+//            { title: "TestTitle", info: "Test description"},
         ]
     };
     
@@ -17,13 +16,24 @@ angular.module('toDoList.services', [])
     
     //Function to add an item to the array in the data object
     function addToDo(toDoItem) {
-        data.toDoList.push({title: toDoItem.title, info: toDoItem.info});
+        
+        //There must be at least a title to add to the list
+        if(toDoItem.title != "")
+        {
+            data.toDoList.push({title: toDoItem.title, info: toDoItem.info});
+        }        
+    }
+    
+    //Functoin to remove an item from the array in the data object
+    function removeToDo(index) {
+        data.toDoList.splice(index, 1);
     }
     
     //Factory returns
     return {
         getToDo: getToDo,
-        addToDo: addToDo
+        addToDo: addToDo,
+        removeToDo: removeToDo
     };
     
 });

@@ -19,6 +19,11 @@ angular.module('toDoList.controllers', [])
         toDoItem.info = "";
     }
     
+    function removeToDo(index) {
+        myListStore.removeToDo(index);
+    }
+    
     $scope.toDoItem = toDoItem;
     $scope.addToDo = addToDo;
+    $scope.removeToDo = removeToDo;
 });
