@@ -1,5 +1,5 @@
 
-angular.module('toDoList', ['ionic', 'toDoList.controllers'])
+angular.module('toDoList', ['ionic', 'toDoList.controllers', 'toDoList.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
