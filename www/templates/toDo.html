@@ -27,13 +27,13 @@
         
         <!-- Button to handle adding the new item to an object -->
         <div class="list list-inset">
-            <button class="button button-block button-dark" ng-click="">Add</button>
+            <button class="button button-block button-dark" ng-click="addToDo()">Add</button>
         </div>
     
         <!-- Ion List to use ng-repeat on objects in [] -->
         <ion-list>
-            <ion-item>
-            
+            <ion-item ng-repeat="item in data.toDoList | filter:filterText">
+                <b>{{item.title}}</b> - {{item.info}}
             </ion-item>    
         </ion-list>
     

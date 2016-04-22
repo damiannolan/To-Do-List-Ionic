@@ -5,8 +5,8 @@ angular.module('toDoList.services', [])
     //Object to store array of items for ToDoList
     var data = {
         toDoList: [
-            { title: "title", info: "info"},
-            { title: "yo", info: "desc"}
+            { title: "Title", info: "Item description here"},
+            { title: "Yo", info: "Item information here"}
         ]
     };
     
