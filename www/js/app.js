@@ -44,6 +44,16 @@ angular.module('toDoList', ['ionic', 'toDoList.controllers', 'toDoList.services'
         controller: 'ToDoCtrl'
         }
       }
+    })
+    
+    .state('app.completedItems', {
+    url: '/completedItems',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/completedItems.html',
+        controller: 'CompletedCtrl'  
+      }
+    }
     });
     
     // if none of the above states are matched, use this as the fallback

@@ -31,11 +31,46 @@ angular.module('toDoList.controllers', [])
         $rootScope.showAddItem = false;
     }
     
+    function addCompleted(index) {
+        myListStore.addCompletedItem(index);
+    }
+    
     function removeToDo(index) {
         myListStore.removeToDo(index);
     }
     
+    
     $scope.toDoItem = toDoItem;
     $scope.addToDo = addToDo;
+    $scope.addCompleted = addCompleted;
     $scope.removeToDo = removeToDo;
+    
+})
+
+.controller('CompletedCtrl', function($scope, $rootScope, myListStore) {
+    
+    $scope.completed = myListStore.getCompleted();
+    
+    var toDoItem = {
+      title: "", info: ""  
+    };
+    
+    function addToDo() {
+        myListStore.addToDo(toDoItem);
+        
+        toDoItem.title = "";
+        toDoItem.info = "";
+        
+        //Reset showAddItem to false to hide Item Input forms
+        $rootScope.showAddItem = false;
+    }
+    
+    //Function to remove completed item
+    function removeCompleted(index) {
+        myListStore.removeCompletedItem(index);
+    }
+    
+    $scope.toDoItem = toDoItem;
+    $scope.addToDo = addToDo;
+    $scope.removeCompleted = removeCompleted;
 });

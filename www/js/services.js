@@ -42,10 +42,22 @@ angular.module('toDoList.services', [])
 })
 
 .factory('myListStore', function(localStorage) {
-   
+   //FUNCTIONS TO CREATE
+    // get completed items
+    // add completed items
+    // remove completed items
+    
+    
     //Object to store array of items for ToDoList
     var data = {
         toDoList: [      
+            //{ title: "TestTitle", info: "Test description"},
+        ]
+    };
+    
+    //Object to store array of completed items
+    var completed = {
+        doneList: [
             //{ title: "TestTitle", info: "Test description"},
         ]
     };
@@ -59,6 +71,15 @@ angular.module('toDoList.services', [])
         return data;
     }
     
+    //Function to get Completed items from factory
+    function getCompleted() {
+        
+        //Attempt to get localStorage data
+        completed.doneList = localStorage.getObject('completed') || [];
+        
+        return completed;
+    }
+    
     //Function to add an item to the array in the data object
     function addToDo(toDoItem) {
         
@@ -69,7 +90,21 @@ angular.module('toDoList.services', [])
             
             //Update the localStorage object
             localStorage.setObject('data', data.toDoList);
-        }
+        }       
+    }
+    
+    //Function to add Completed items from factory
+    function addCompletedItem(index) {
+        //splice object and assign to temp
+        var temp = data.toDoList.splice(index, 1);
+        
+        //splice() returns an array
+        //So must push temp[0] to doneList otherwise it is an array of arrays
+        completed.doneList.push(temp[0]);
+        
+        //Update local storage objects
+        localStorage.setObject('data', data.toDoList);
+        localStorage.setObject('completed', completed.doneList);
         
     }
     
@@ -81,11 +116,22 @@ angular.module('toDoList.services', [])
         localStorage.setObject('data', data.toDoList);
     }
     
+    //Function to remove an item from the array in the completed items object
+    function removeCompletedItem(index) {
+        completed.doneList.splice(index, 1);
+        
+        //Set the new object in localStorage to the new doneList object
+        localStorage.setObject('completed', completed.doneList);
+    }
+    
     //Factory returns
     return {
         getToDo: getToDo,
+        getCompleted: getCompleted,
         addToDo: addToDo,
-        removeToDo: removeToDo
+        addCompletedItem: addCompletedItem,
+        removeToDo: removeToDo,
+        removeCompletedItem: removeCompletedItem
     };
     
 });
