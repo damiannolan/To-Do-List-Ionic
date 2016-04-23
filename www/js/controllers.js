@@ -1,10 +1,19 @@
 angular.module('toDoList.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout) {
+    
+    //using $rootScope allows the variable to be available to all the controllers
+    //https://docs.angularjs.org/api/ng/service/$rootScope
+    $rootScope.showAddItem = false;
+    
+    function enableAddItem() {
+        $rootScope.showAddItem = true;
+    }
+    
+    $scope.enableAddItem = enableAddItem;
 })
 
-.controller('ToDoCtrl', function($scope, myListStore) {
+.controller('ToDoCtrl', function($scope, $rootScope, myListStore) {
     
     $scope.data = myListStore.getToDo();
     
@@ -17,6 +26,9 @@ angular.module('toDoList.controllers', [])
         
         toDoItem.title = "";
         toDoItem.info = "";
+        
+        //Reset showAddItem to false to hide Item Input forms
+        $rootScope.showAddItem = false;
     }
     
     function removeToDo(index) {

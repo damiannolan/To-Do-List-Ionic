@@ -6,22 +6,28 @@ angular.module('toDoList.services', [])
 // I done some reading about it and then implemented the functions in my own factory below - 'myListStore'
 
 .factory('localStorage', function($window) {
-	function get(key, defaultValue) {
+	
+    //returns the value for key or else defaultValue
+    function get(key, defaultValue) {
 		return $window.localStorage[key] || defaultValue;
 	}
-
+    
+    //Set a value for a specific key
 	function set(key, value) {
 		$window.localStorage[key] = value;
 	}
-
+    
+    //returns the object stored at the key, JSON.parse() method parses a string as JSON
 	function getObject(key) {
 		return JSON.parse($window.localStorage[key] || null);
 	}
-
+    
+    //JSON.stringify parses the value as a JSON string and stores it at the key given
 	function setObject(key, value) {
 		$window.localStorage[key] = JSON.stringify(value);
 	}
-
+    
+    //Removes the specified key and values
 	function removeItem(key) {
 		$window.localStorage.removeItem(key);
 	}

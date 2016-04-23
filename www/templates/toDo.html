@@ -9,27 +9,43 @@
             </label>
         </div>
         
-        <!-- Input for To Do List item title -->
-        <div class="list list-inset">
-            <label class="item item-input">
-                <i class="icon ion-plus-round placeholder-icon"></i>
-                <input type="text" placeholder="Add Title" ng-model="toDoItem.title">
-            </label>
+        <!-- ng-show="showAddItem" initially set to false -->
+        <div ng-show="showAddItem">
+            
+            <!-- Wrap in card -->
+            <div class="card">
+                
+                <!-- Item Title-->
+                <div class="item item-divider newItemTitle" style="text-align: center">
+                    New Item
+                </div>
+
+                <!-- Input for To Do List item title -->
+                <div class="list list-inset">
+                    <label class="item item-input">
+                        <i class="icon ion-plus-round placeholder-icon"></i>
+                        <input type="text" placeholder="Add Title" ng-model="toDoItem.title">
+                    </label>
+                </div>
+
+                <!-- Input for To Do List item description/information -->
+                <div class="list list-inset">
+                    <label class="item item-input">
+                        <i class="icon ion-plus-round placeholder-icon"></i>
+                        <input type="text" placeholder="Add Description" ng-model="toDoItem.info">
+                    </label>
+                </div>
+
+                <!-- Button to handle adding the new item to an object -->
+                <div class="list list-inset">
+                    <button class="button button-block button-dark" ng-click="addToDo()">Add To List</button>
+                </div>
+
+            </div>
+            
         </div>
-        
-        <!-- Input for To Do List item description/information -->
-        <div class="list list-inset">
-            <label class="item item-input">
-                <i class="icon ion-plus-round placeholder-icon"></i>
-                <input type="text" placeholder="Add Description" ng-model="toDoItem.info">
-            </label>
-        </div>
-        
-        <!-- Button to handle adding the new item to an object -->
-        <div class="list list-inset">
-            <button class="button button-block button-dark" ng-click="addToDo()">Add</button>
-        </div>
-    
+            
+            
         <!-- Ion List to use ng-repeat on objects in [] -->
         <div class="list list-inset">
             <ion-list show-delete="shouldShowDelete">
