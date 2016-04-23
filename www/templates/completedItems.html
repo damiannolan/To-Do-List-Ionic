@@ -1,4 +1,4 @@
-<ion-view view-title="Completed">
+<ion-view class="my-background" view-title="Completed">
   <ion-content>      
     
     <!-- Input for search filter -->
@@ -16,7 +16,7 @@
         <div class="card">
 
             <!-- Item Title-->
-            <div class="item item-divider newItemTitle" style="text-align: center">
+            <div class="item item-divider newItemTitle my-title" style="text-align: center">
                 New Item
             </div>
 
@@ -45,29 +45,35 @@
     </div>
       
     <!-- ng-repeat completed items list -->
-    <div class="list list-inset">
-        <ion-list show-delete="shouldShowDelete">
+    <div class="card">
+        
+        <div class="item item-divider newItemTitle my-title" style="text-align: center">
+            Completed Items
+        </div>
+    
+        <div class="list list-inset">
+            <ion-list show-delete="shouldShowDelete">
 
-            <ion-item ng-repeat="item in completed.doneList | filter:filterText track by $index">
+                <ion-item ng-repeat="item in completed.doneList | filter:filterText track by $index">
 
-                <!-- Referenced from ionicframework api's 
-                http://ionicframework.com/docs/api/directive/ionDeleteButton/-->
-                <ion-delete-button class="ion-minus-circled" ng-click="removeCompleted($index)"></ion-delete-button>
+                    <!-- Referenced from ionicframework api's 
+                    http://ionicframework.com/docs/api/directive/ionDeleteButton/-->
+                    <ion-delete-button class="ion-minus-circled" ng-click="removeCompleted($index)"></ion-delete-button>
 
-                <!-- Desiplay items in Completed List -->
-                <b>{{item.title}}</b> - {{item.info}}                    
+                    <!-- Desiplay items in Completed List -->
+                    <b>{{item.title}}</b> - {{item.info}}                    
 
-                <ion-button class="button button-icon ion-checkmark" 
-                            style="position: absolute; right: 5%; top: 10%; color: green">
-                </ion-button>
-            </ion-item>    
-        </ion-list>
+                    <ion-button class="button button-icon ion-checkmark-circled" 
+                                style="position: absolute; right: 5%; top: 10%; font-size: 175%; color: green">
+                    </ion-button>
+                </ion-item>    
+            </ion-list>
 
-        <ion-toggle ng-model="shouldShowDelete">
-            Remove Items
-        </ion-toggle>
-
-    </div>
+            <ion-toggle ng-model="shouldShowDelete">
+                Remove Items
+            </ion-toggle>
+        </div>
       
+    </div>
   </ion-content>
 </ion-view>

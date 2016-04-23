@@ -1,4 +1,4 @@
-<ion-view view-title="ToDo">
+<ion-view  class="my-background" view-title="To Do">
     <ion-content>
         
         <!-- Input for search filter -->
@@ -15,8 +15,8 @@
             <!-- Wrap in card -->
             <div class="card">
                 
-                <!-- Item Title-->
-                <div class="item item-divider newItemTitle" style="text-align: center">
+                <!-- New Item Title-->
+                <div class="item item-divider newItemTitle my-title" style="text-align: center">
                     New Item
                 </div>
 
@@ -41,33 +41,37 @@
                     <button class="button button-block button-dark" ng-click="addToDo()">Add To List</button>
                 </div>
 
-            </div>
-            
+            </div>        
         </div>
-            
-            
-        <!-- Ion List to use ng-repeat on objects in data.toDoList[] -->
-        <div class="list list-inset">
-            <ion-list show-delete="shouldShowDelete">
-                <ion-item ng-repeat="item in data.toDoList | filter:filterText track by $index">
-                    
-                    <!-- Referenced from ionicframework api's 
-                    http://ionicframework.com/docs/api/directive/ionDeleteButton/-->
-                    <ion-delete-button class="ion-minus-circled" ng-click="removeToDo($index)"></ion-delete-button>
-                    
-                    <!-- Desiplay items in To Do List -->
-                    <b>{{item.title}}</b> - {{item.info}}                    
-                    
-                    <ion-button class="button button-icon ion-checkmark" ng-click="addCompleted()" 
-                                style="position: absolute; right: 5%; top: 10%">
-                    </ion-button>
-                </ion-item>    
-            </ion-list>
-            
-            <ion-toggle ng-model="shouldShowDelete">
-                Remove Items
-            </ion-toggle>
-            
+        
+        <div class="card">    
+            <!-- Title -->
+            <div class="item item-divider newItemTitle my-title" style="text-align: center">
+                List Items
+            </div>    
+
+            <!-- Ion List to use ng-repeat on objects in data.toDoList[] -->
+            <div class="list list-inset">
+                <ion-list show-delete="shouldShowDelete">
+                    <ion-item ng-repeat="item in data.toDoList | filter:filterText track by $index">
+
+                        <!-- Referenced from ionicframework api's 
+                        http://ionicframework.com/docs/api/directive/ionDeleteButton/-->
+                        <ion-delete-button class="ion-minus-circled" ng-click="removeToDo($index)"></ion-delete-button>
+
+                        <!-- Desiplay items in To Do List -->
+                        <b>{{item.title}}</b> - {{item.info}}                    
+
+                        <ion-button class="button button-icon ion-checkmark-circled" ng-click="addCompleted()" 
+                                    style="position: absolute; right: 2%; top: 10%; font-size: 175%">
+                        </ion-button>
+                    </ion-item>    
+                </ion-list>
+
+                <ion-toggle ng-model="shouldShowDelete">
+                    Remove Items
+                </ion-toggle>         
+            </div>
         </div>
         
     </ion-content>

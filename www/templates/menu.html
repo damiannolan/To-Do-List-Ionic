@@ -1,19 +1,20 @@
 <ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
 
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-        </button>
-      </ion-nav-buttons>
-        
-        <ion-nav-buttons side="right">
-            <button class="button button-icon button-clear ion-plus" ng-click="enableAddItem()">
-            </button>
-        </ion-nav-buttons>
-    </ion-nav-bar>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+
+            <ion-nav-buttons side="right">
+                <button class="button button-icon button-clear ion-plus" ng-click="enableAddItem()">
+                </button>
+            </ion-nav-buttons>
+
+        </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
@@ -24,17 +25,18 @@
     <ion-content>
       <ion-list>
         
-        <ion-item menu-close href="#/app/search">
-          Search
+        <ion-item menu-close href="#/app/about">
+            <i class="icon ion-information-circled"></i> About
         </ion-item>
         
-        <ion-item menu-close href="#/app/toDo">
-          <i class="icon ion-android-list"></i> My List
-        </ion-item>
-          
         <ion-item menu-close href="#/app/completedItems">
           <i class="icon ion-android-list"></i> Completed
+        </ion-item>  
+          
+        <ion-item menu-close href="#/app/toDo">
+          <i class="icon ion-android-list"></i> To Do
         </ion-item>
+          
       </ion-list>
     </ion-content>
   </ion-side-menu>
