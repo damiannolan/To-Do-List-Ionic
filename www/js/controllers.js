@@ -18,7 +18,7 @@ angular.module('toDoList.controllers', [])
     $scope.data = myListStore.getToDo();
     
     var toDoItem = {
-      title: "", info: ""  
+      title: "", info: ""
     };
     
     function addToDo() {
