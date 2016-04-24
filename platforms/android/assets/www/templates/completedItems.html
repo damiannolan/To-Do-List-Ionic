@@ -1,0 +1,79 @@
+<ion-view class="my-background" view-title="Completed">
+  <ion-content>      
+    
+    <!-- Input for search filter -->
+    <div class="list list-inset">
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Search" ng-model="filterText">
+        </label>
+    </div>
+      
+    <!-- ng-show="showAddItem" initially set to false -->
+    <div ng-show="showAddItem">
+
+        <!-- Wrap in card -->
+        <div class="card">
+
+            <!-- Item Title-->
+            <div class="item item-divider newItemTitle my-title" style="text-align: center">
+                New Item
+            </div>
+
+            <!-- Input for To Do List item title -->
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-plus-round placeholder-icon"></i>
+                    <input type="text" placeholder="Add Title" ng-model="toDoItem.title">
+                </label>
+            </div>
+
+            <!-- Input for To Do List item description/information -->
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-plus-round placeholder-icon"></i>
+                    <input type="text" placeholder="Add Description" ng-model="toDoItem.info">
+                </label>
+            </div>
+
+            <!-- Button to handle adding the new item to an object -->
+            <div class="list list-inset">
+                <button class="button button-block button-dark" ng-click="addToDo()">Add To List</button>
+            </div>
+
+        </div>        
+    </div>
+      
+    <!-- ng-repeat completed items list -->
+    <div class="card">
+        
+        <div class="item item-divider newItemTitle my-title" style="text-align: center">
+            Completed Items
+        </div>
+    
+        <div class="list list-inset">
+            <ion-list show-delete="shouldShowDelete">
+
+                <ion-item ng-repeat="item in completed.doneList | filter:filterText track by $index">
+
+                    <!-- Referenced from ionicframework api's 
+                    http://ionicframework.com/docs/api/directive/ionDeleteButton/-->
+                    <ion-delete-button class="ion-minus-circled" ng-click="removeCompleted($index)"></ion-delete-button>
+
+                    <!-- Desiplay items in Completed List -->
+                    <b>{{item.title}}</b>  <p style="font-style: italic">{{item.info}}</p>                 
+
+                    <ion-button class="button button-icon ion-checkmark-circled" 
+                                style="position: absolute; right: 2%; top: 10%; font-size: 175%; color: #28a54c">
+                    </ion-button>
+                </ion-item>    
+            </ion-list>
+
+            <ion-toggle ng-model="shouldShowDelete">
+                Remove Items
+            </ion-toggle>
+        </div>
+      
+    </div>
+  </ion-content>
+</ion-view>
